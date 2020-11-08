@@ -1,4 +1,3 @@
 # SmolScripts
 
-Speech to text feat. @LosProsAndCons
-  Requires ffmpeg in path.
+Speech to text feat. [LosProsAndCons](https://github.com/LosProsAndCons) -Requires ffmpeg in path.
