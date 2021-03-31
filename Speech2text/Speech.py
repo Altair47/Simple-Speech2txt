@@ -21,7 +21,7 @@ def reco(inputfile):
 
 #Main
 tmp = open('extensions.txt','r')
-f = tmp.readlines() #Imported in a list
+extlist = tmp.readlines() #Imported in a list
 tmp.close()
 try:
     tmp = open('TextLog.txt','r',encoding="utf-8")
@@ -29,23 +29,22 @@ try:
     tmp.close()
 except:
     print("No history")
-    tmp = open('TextLog.txt','r',encoding="utf-8")
-    oldrecs=tmp.readlines()
-    tmp.close()
+    open('TextLog.txt', 'a').close()
+    oldrecs=''
 
 
-for i in range(len(f)):
-	f[i]=f[i].strip('\n')
+for i in range(len(extlist)):
+	extlist[i]=extlist[i].strip('\n')
 
 
 for dirs in os.listdir():
     if dirs[:dirs.rfind('.')]+':\n' in oldrecs: #checks if it already has been transcribed
         continue
-    for i in f:
+    for i in extlist:
         if dirs.endswith(i):
             newwav=dirs[:-len(i)]+'.wav'
             subprocess.call(['ffmpeg', '-i', dirs,newwav])
-            reco(dirs[:-len(i)]+'.wav') #EPICO
+            reco(newwav) #EPICO
             os.remove(newwav)
     if dirs.endswith('.wav'):
         reco(dirs)
@@ -58,3 +57,4 @@ for dirs in os.listdir():
 #    if dirs.endswith('.wav'):
 #        reco(dirs)
 #dirs.rfind('.')
+# ffmpeg -i '.\00302111001001(00302111001001)_20200901231557.mp3' -f segment -segment_time 30 -c copy output%04d.wav
