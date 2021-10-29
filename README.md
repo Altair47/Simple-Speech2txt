@@ -1,3 +1,3 @@
-# SmolScripts
+# Simple Speech2text
 
-Speech to text feat. [LosProsAndCons](https://github.com/LosProsAndCons) -Requires ffmpeg in path.
+Speech to text, Requires ffmpeg in path.
